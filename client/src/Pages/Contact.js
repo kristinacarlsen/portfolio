@@ -84,12 +84,7 @@ class ContactMe extends React.Component {
             ></Form.Control>
           </Form.Group>
 
-          <Button
-            className="d-inline-block"
-            variant="primary"
-            type="submit"
-            onClick={this.resetForm}
-          >
+          <Button className="d-inline-block" variant="primary" type="submit">
             Send
           </Button>
         </Form>

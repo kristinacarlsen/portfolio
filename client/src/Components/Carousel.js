@@ -19,7 +19,8 @@ class Carousel extends React.Component {
           title: "Reality Realty",
           subtitle: "Realty site built with Javascript",
           imgSrc: realityRealty,
-          link: "https://github.com/kristinacarlsen/realityRealtor",
+          codeLink: "https://github.com/kristinacarlsen/realityRealtor",
+          siteLink: "https://kristinacarlsen.github.io/realityRealtor/",
           selected: false
         },
         {
@@ -27,7 +28,8 @@ class Carousel extends React.Component {
           title: "Trajectory",
           subtitle: "A blog site built with React.js",
           imgSrc: trajectory,
-          link: "https://github.com/kristinacarlsen/Trajectory",
+          codeLink: "https://github.com/kristinacarlsen/Trajectory",
+          siteLink: "https://kristinacarlsen.github.io/Trajectory/",
           selected: false
         },
         {
@@ -35,7 +37,8 @@ class Carousel extends React.Component {
           title: "The Garden",
           subtitle: "A website for a plant business created with Javascript",
           imgSrc: garden,
-          link: "https://github.com/kristinacarlsen/landingPage",
+          codeLink: "https://github.com/kristinacarlsen/landingPage",
+          siteLink: "https://kristinacarlsen.github.io/TheGarden/",
           selected: false
         }
       ]
@@ -73,7 +76,7 @@ class Carousel extends React.Component {
     return (
       <Container className="projects" fluid={true}>
         <Row className="justify-content-around">
-          <Col xs="auto">{this.makeItems(this.state.items)}</Col>
+          {this.makeItems(this.state.items)}
         </Row>
       </Container>
     );

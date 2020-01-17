@@ -17,7 +17,8 @@ function Card(props) {
         <CardInfo
           title={props.item.title}
           subtitle={props.item.subtitle}
-          link={props.item.link}
+          codeLink={props.item.codeLink}
+          siteLink={props.item.siteLink}
         />
       )}
     </div>
