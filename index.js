@@ -9,7 +9,7 @@ require("dotenv").config();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
 app.all("/", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
