@@ -60,6 +60,7 @@ class ContactMe extends React.Component {
               name="name"
               type="text"
               onChange={this.handleChange}
+              value={this.state.name}
             ></Form.Control>
           </Form.Group>
 
@@ -70,6 +71,7 @@ class ContactMe extends React.Component {
               name="email"
               type="email"
               onChange={this.handleChange}
+              value={this.state.email}
             ></Form.Control>
           </Form.Group>
 
@@ -81,6 +83,7 @@ class ContactMe extends React.Component {
               as="textarea"
               rows="4"
               onChange={this.handleChange}
+              value={this.state.message}
             ></Form.Control>
           </Form.Group>
 
