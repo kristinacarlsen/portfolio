@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Alert } from "react-bootstrap";
 
 import Content from "../Components/Content";
 import Jumbo from "../Components/Jumbo";
@@ -12,7 +13,14 @@ class ContactMe extends React.Component {
     this.state = {
       name: "",
       email: "",
-      message: ""
+      message: "",
+
+      //adding success and error messsages
+      misc: {
+        succAlert: false,
+        isValid: true,
+        backErr: null
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,6 +29,15 @@ class ContactMe extends React.Component {
   }
 
   handleChange = e => {
+    this.setState(prev => ({
+      misc: {
+        ...prev.misc,
+        succAlert: false,
+        isValid: true,
+        backErr: null
+      }
+    }));
+
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -35,13 +52,44 @@ class ContactMe extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    axios({
-      method: "POST",
-      url: "/api/form",
-      data: this.state
-    }).then(() => {
-      this.resetForm();
-    });
+    if (this.state.email && this.state.name && this.state.message) {
+      axios({
+        method: "POST",
+        url: "/api/form",
+        data: this.state
+      })
+        .then(resp => {
+          if (resp.status === 200 && resp.data.msg === "email sent") {
+            this.resetForm();
+
+            this.setState(prev => ({
+              misc: {
+                ...prev.misc,
+                succAlert: true
+              }
+            }));
+          }
+        })
+        .catch(err => {
+          if (err.message === "Network Error") {
+            this.setState(prev => ({
+              misc: {
+                ...prev.misc,
+                backErr: `${err.message}`
+              }
+            }));
+          } else {
+            console.log(err);
+          }
+        });
+    } else {
+      this.setState(prev => ({
+        misc: {
+          ...prev.misc,
+          isValid: false
+        }
+      }));
+    }
   };
 
   render() {
@@ -53,6 +101,21 @@ class ContactMe extends React.Component {
           method="POST"
           onSubmit={this.handleSubmit}
         >
+          {this.state.misc.succAlert && (
+            <Alert variant="success" className="text-center">
+              Message sent! Talk to you soon!
+            </Alert>
+          )}
+          {this.state.misc.backErr && (
+            <Alert variant="danger" className="text-center">
+              {this.state.misc.backErr}
+            </Alert>
+          )}
+          {!this.state.misc.isValid && (
+            <Alert variant="warning" className="text-center">
+              Uh oh! You forgot something. Check the form.
+            </Alert>
+          )}
           <Form.Group>
             <Form.Label htmlFor="full-name">Full Name</Form.Label>
             <Form.Control

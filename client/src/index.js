@@ -8,6 +8,6 @@ import "./index.css";
 import App from "./App";
 
 axios.defaults.baseURL = "http://localhost:3001"; // comment out this line on production
-// axios.defaults.baseURL = 'UNCOMMENT THIS and put URL of your site on production';
+// axios.defaults.baseURL = 'http://kristinacarlsen.com';
 
 ReactDOM.render(<App />, document.getElementById("root"));
