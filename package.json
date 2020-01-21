@@ -16,7 +16,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build --prefix client &&npm run start --prefix server"
+    "build": "npm run build --prefix client"
   },
   "repository": {
     "type": "git",
